@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState, type ComponentType } from "react";
+import { FormEvent, Suspense, useState, type ComponentType } from "react";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import {
@@ -76,6 +76,49 @@ const adminLinks: HeaderLink[] = [
 ];
 
 export function Header() {
+  return (
+    <Suspense fallback={<HeaderFallback />}>
+      <HeaderContent />
+    </Suspense>
+  );
+}
+
+function HeaderFallback() {
+  return (
+    <header className="sticky top-0 z-40 border-b border-stone-200 bg-white/95 backdrop-blur-xl">
+      <div className="mx-auto grid max-w-7xl grid-cols-[1fr_auto_1fr] items-center gap-3 px-4 py-4 lg:px-8">
+        <div />
+
+        <Link
+          href="/"
+          className="justify-self-center text-center"
+          aria-label="Ir para a página inicial da PointClick"
+        >
+          <span className="block text-[1.05rem] font-semibold tracking-[0.28em] text-stone-950">
+            POINTCLICK
+          </span>
+        </Link>
+
+        <div />
+      </div>
+
+      <div className="hidden border-t border-stone-100 bg-[#fbfaf7]/80 xl:block">
+        <nav className="mx-auto flex max-w-7xl items-center justify-center gap-8 px-8 py-3">
+          {storeLinks.map((link) => (
+            <StoreNavLink
+              key={link.href}
+              href={link.href}
+              label={link.label}
+              active={false}
+            />
+          ))}
+        </nav>
+      </div>
+    </header>
+  );
+}
+
+function HeaderContent() {
   const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();

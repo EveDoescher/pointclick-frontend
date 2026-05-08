@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  Suspense,
   useEffect,
   useMemo,
   useState,
@@ -81,9 +82,38 @@ const validityOptions: { value: ValidityFilter; label: string }[] = [
 
 export default function AdminCouponsPage() {
   return (
-    <AdminRoute>
-      <AdminCouponsContent />
-    </AdminRoute>
+    <Suspense fallback={<AdminCouponsPageFallback />}>
+      <AdminRoute>
+        <AdminCouponsContent />
+      </AdminRoute>
+    </Suspense>
+  );
+}
+
+function AdminCouponsPageFallback() {
+  return (
+    <main className="min-h-screen bg-[#f8f7f3] px-4 py-8 lg:px-8 lg:py-10">
+      <div className="mx-auto max-w-7xl">
+        <div className="rounded-[2rem] border border-stone-200 bg-white p-8 shadow-[0_20px_54px_rgba(41,37,36,0.06)]">
+          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#8f6f2e]">
+            Admin • Cupons
+          </p>
+
+          <h1 className="mt-4 text-3xl font-semibold tracking-[-0.04em] text-stone-950">
+            Carregando cupons...
+          </h1>
+
+          <div className="mt-8 space-y-3">
+            {Array.from({ length: 4 }).map((_, index) => (
+              <div
+                key={index}
+                className="h-16 animate-pulse rounded-[1.25rem] bg-stone-100"
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </main>
   );
 }
 

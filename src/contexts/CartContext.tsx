@@ -310,9 +310,9 @@ export function CartProvider({ children }: CartProviderProps) {
         throw new Error("Carrinho não encontrado.");
       }
 
-      return orderService.quoteShipping(cart.id, {
-        cep,
-      });
+      return addressService.quoteByCep(
+        cep
+      );
     },
     [cart]
   );
