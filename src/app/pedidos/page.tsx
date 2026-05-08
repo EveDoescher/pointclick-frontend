@@ -136,7 +136,7 @@ function MyOrdersContent() {
 
             <Link
               href="/produtos"
-              className="mt-7 inline-flex rounded-full border border-[var(--pc-purple)] bg-[var(--pc-purple)] px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[var(--pc-purple-hover)]"
+              className="mt-7 inline-flex rounded-full border border-[var(--pc-purple)] bg-[var(--pc-purple)] px-5 py-3 text-sm font-semibold !text-white shadow-sm transition hover:bg-[var(--pc-purple-hover)]"
             >
               Ver produtos
             </Link>

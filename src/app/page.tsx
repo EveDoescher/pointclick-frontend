@@ -71,13 +71,13 @@ const departmentCards: {
   {
     title: "Teclados",
     description: "Conforto e resposta para rotina e jogos.",
-    href: categoryHref("Teclado"),
+    href: categoryHref("Teclados"),
     icon: Keyboard,
   },
   {
     title: "Mouses",
     description: "Precisão premium para diferentes estilos.",
-    href: categoryHref("Mouse"),
+    href: categoryHref("Mouses"),
     icon: Mouse,
   },
   {

@@ -51,11 +51,11 @@ const storeLinks: HeaderLink[] = [
   { href: "/produtos?sort=newest", label: "Novidades", icon: Sparkles },
   {
     href: categoryGroupHref("Computadores e Mobile"),
-    label: "Notebooks",
+    label: "Computadores e Mobile",
     icon: Laptop,
   },
   { href: categoryGroupHref("Periféricos"), label: "Periféricos", icon: Mouse },
-  { href: categoryGroupHref("Vídeo"), label: "Monitores", icon: Monitor },
+  { href: categoryGroupHref("Vídeo"), label: "Vídeo", icon: Monitor },
   { href: categoryGroupHref("Áudio"), label: "Áudio", icon: Headphones },
   { href: categoryGroupHref("Acessórios"), label: "Acessórios", icon: Cable },
 ];
