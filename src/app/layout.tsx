@@ -20,7 +20,7 @@ const nunitoSans = Nunito_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "PointClick | Eletrônicos premium",
+  title: "PointClick",
   description:
     "PointClick é um e-commerce premium de eletrônicos, periféricos e acessórios.",
 };
