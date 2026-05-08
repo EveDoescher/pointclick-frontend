@@ -1,0 +1,41 @@
+{
+  "$schema": "./node_modules/@stryker-mutator/core/schema/stryker-schema.json",
+  "packageManager": "npm",
+  "testRunner": "vitest",
+  "coverageAnalysis": "perTest",
+  "reporters": [
+    "html",
+    "clear-text",
+    "progress"
+  ],
+  "vitest": {
+    "configFile": "vitest.config.ts"
+  },
+  "mutate": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "!src/**/*.test.ts",
+    "!src/**/*.test.tsx",
+    "!src/**/__tests__/**",
+    "!src/test/**",
+    "!src/types/**",
+    "!src/app/layout.tsx",
+    "!src/app/globals.css"
+  ],
+  "ignorePatterns": [
+    "node_modules",
+    ".next",
+    "coverage",
+    "playwright-report",
+    "test-results",
+    "reports",
+    "e2e"
+  ],
+  "thresholds": {
+    "high": 80,
+    "low": 60,
+    "break": 0
+  },
+  "concurrency": 2,
+  "timeoutMS": 90000
+}

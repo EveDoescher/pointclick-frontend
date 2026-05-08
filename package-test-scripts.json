@@ -1,0 +1,11 @@
+{
+  "scripts_para_adicionar_no_package_json": {
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:mutation": "stryker run",
+    "test:all": "npm run lint && npm run build && npm run test:run && npm run test:e2e"
+  }
+}

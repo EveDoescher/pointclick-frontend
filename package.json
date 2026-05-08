@@ -1,26 +1,53 @@
-{
-  "name": "pointclick-frontend",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
-  },
-  "dependencies": {
-    "next": "16.2.4",
-    "react": "19.2.4",
-    "react-dom": "19.2.4"
-  },
-  "devDependencies": {
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "16.2.4",
-    "tailwindcss": "^4",
-    "typescript": "^5"
-  }
+﻿{
+    "name":  "pointclick-frontend",
+    "version":  "0.1.0",
+    "private":  true,
+    "scripts":  {
+                    "dev":  "next dev",
+                    "build":  "next build",
+                    "start":  "next start",
+                    "lint":  "eslint",
+                    "test":  "vitest",
+                    "test:run":  "vitest run",
+                    "test:coverage":  "vitest run --coverage",
+                    "test:e2e":  "playwright test",
+                    "test:e2e:ui":  "playwright test --ui",
+                    "test:mutation":  "stryker run stryker.conf.json",
+                    "test:all":  "npm run lint \u0026\u0026 npm run build \u0026\u0026 npm run test:run \u0026\u0026 npm run test:e2e",
+                    "test:mutation:quick":  "stryker run stryker.quick.conf.json",
+                    "test:mutation:full":  "stryker run stryker.full.conf.json"
+                },
+    "dependencies":  {
+                         "@hookform/resolvers":  "^5.2.2",
+                         "clsx":  "^2.1.1",
+                         "lucide-react":  "^1.14.0",
+                         "next":  "^16.2.4",
+                         "react":  "19.2.4",
+                         "react-dom":  "19.2.4",
+                         "react-hook-form":  "^7.75.0",
+                         "tailwind-merge":  "^3.5.0",
+                         "zod":  "^4.4.2"
+                     },
+    "devDependencies":  {
+                            "@playwright/test":  "^1.59.1",
+                            "@stryker-mutator/core":  "^9.6.1",
+                            "@stryker-mutator/vitest-runner":  "^9.6.1",
+                            "@tailwindcss/postcss":  "^4",
+                            "@testing-library/jest-dom":  "^6.9.1",
+                            "@testing-library/react":  "^16.3.2",
+                            "@testing-library/user-event":  "^14.6.1",
+                            "@types/node":  "^20",
+                            "@types/react":  "^19",
+                            "@types/react-dom":  "^19",
+                            "@vitejs/plugin-react":  "^6.0.1",
+                            "@vitest/coverage-v8":  "^4.1.5",
+                            "eslint":  "^9",
+                            "eslint-config-next":  "16.2.4",
+                            "jsdom":  "^29.1.1",
+                            "msw":  "^2.14.4",
+                            "tailwindcss":  "^4",
+                            "typescript":  "^5",
+                            "vite-tsconfig-paths":  "^6.1.1",
+                            "vitest":  "^4.1.5"
+                        }
 }
