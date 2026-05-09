@@ -146,18 +146,15 @@ function ProductsCatalogPage() {
     });
   }, [searchFromUrl, categoryGroupFromUrl, categoryFromUrl]);
 
-  useEffect(() => {
+    useEffect(() => {
     async function loadFilterOptions() {
       try {
-        const [categoryGroupResponse, categoryResponse, brandResponse] =
-          await Promise.all([
-            productService.findCategoryGroups(),
-            productService.findCategories(),
-            productService.findBrands(),
-          ]);
+        const [categoryGroupResponse, brandResponse] = await Promise.all([
+          productService.findCategoryGroups(),
+          productService.findBrands(),
+        ]);
 
         setCategoryGroups(categoryGroupResponse);
-        setCategories(categoryResponse);
         setBrands(brandResponse);
       } catch (error) {
         showError(error, "Erro ao carregar filtros");
@@ -166,6 +163,45 @@ function ProductsCatalogPage() {
 
     loadFilterOptions();
   }, [showError]);
+
+    useEffect(() => {
+    let mounted = true;
+
+    async function loadCategoriesByGroup() {
+      try {
+        const response = await productService.findCategories(
+          filters.categoryGroup || undefined
+        );
+
+        if (!mounted) return;
+
+        setCategories(response);
+
+        setFilters((current) => {
+          if (!current.category) {
+            return current;
+          }
+
+          if (response.includes(current.category)) {
+            return current;
+          }
+
+          return {
+            ...current,
+            category: "",
+          };
+        });
+      } catch (error) {
+        showError(error, "Erro ao carregar categorias");
+      }
+    }
+
+    loadCategoriesByGroup();
+
+    return () => {
+      mounted = false;
+    };
+  }, [filters.categoryGroup, showError]);
 
   useEffect(() => {
     const timeoutId = window.setTimeout(async () => {
@@ -235,6 +271,14 @@ function ProductsCatalogPage() {
     setFilters((current) => ({
       ...current,
       [key]: value,
+    }));
+  }
+
+  function updateCategoryGroup(value: string) {
+    setFilters((current) => ({
+      ...current,
+      categoryGroup: value,
+      category: "",
     }));
   }
 
@@ -391,6 +435,7 @@ function ProductsCatalogPage() {
                   categories={categories}
                   brands={brands}
                   onUpdateFilter={updateFilter}
+                  onUpdateCategoryGroup={updateCategoryGroup}
                   onClearFilters={clearFilters}
                 />
               </div>
@@ -451,6 +496,7 @@ function ProductsCatalogPage() {
                       categories={categories}
                       brands={brands}
                       onUpdateFilter={updateFilter}
+                      onUpdateCategoryGroup={updateCategoryGroup}
                       onClearFilters={clearFilters}
                     />
                   </div>
@@ -508,6 +554,7 @@ function FilterPanel({
   categories,
   brands,
   onUpdateFilter,
+  onUpdateCategoryGroup,
   onClearFilters,
 }: {
   filters: ProductFilters;
@@ -518,6 +565,7 @@ function FilterPanel({
     key: K,
     value: ProductFilters[K]
   ) => void;
+  onUpdateCategoryGroup: (value: string) => void;
   onClearFilters: () => void;
 }) {
   return (
@@ -545,9 +593,7 @@ function FilterPanel({
         <FilterGroup title="Grupo">
           <select
             value={filters.categoryGroup ?? ""}
-            onChange={(event) =>
-              onUpdateFilter("categoryGroup", event.target.value)
-            }
+            onChange={(event) => onUpdateCategoryGroup(event.target.value)}
             className="h-11 w-full rounded-full border border-[var(--pc-border)] bg-white px-4 text-sm font-semibold text-[var(--pc-text)] outline-none transition hover:border-[var(--pc-border-strong)] focus:border-[var(--pc-purple)]"
           >
             <option value="">Todos</option>

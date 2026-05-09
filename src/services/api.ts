@@ -92,14 +92,14 @@ export function buildApiUrl(path: string): string {
   return `${API_BASE_URL}${path.startsWith("/") ? path : `/${path}`}`;
 }
 
-export function buildPublicFileUrl(url: string | null | undefined): string | null {
-  if (!url) return null;
+export function buildPublicFileUrl(path?: string | null) {
+  if (!path) return null;
 
-  if (url.startsWith("http://") || url.startsWith("https://")) {
-    return url;
+  if (path.startsWith("http://") || path.startsWith("https://")) {
+    return path;
   }
 
-  return buildApiUrl(url);
+  return `${API_BASE_URL}${path.startsWith("/") ? path : `/${path}`}`;
 }
 
 export function buildQueryParams(params: Record<string, unknown>): string {

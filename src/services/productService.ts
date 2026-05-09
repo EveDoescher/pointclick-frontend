@@ -83,18 +83,26 @@ export const productService = {
     });
   },
 
-  async findCategories(): Promise<string[]> {
-    return apiFetch<string[]>("/products/categories", {
-      method: "GET",
-      auth: false,
-    });
-  },
+  async findCategories(categoryGroup?: string): Promise<string[]> {
+  const query = buildQueryParams({
+    categoryGroup,
+  });
 
-  async findAllCategoriesForAdmin(): Promise<string[]> {
-    return apiFetch<string[]>("/products/admin/categories", {
-      method: "GET",
-    });
-  },
+  return apiFetch<string[]>(`/products/categories${query}`, {
+    method: "GET",
+    auth: false,
+  });
+},
+
+  async findAllCategoriesForAdmin(categoryGroup?: string): Promise<string[]> {
+  const query = buildQueryParams({
+    categoryGroup,
+  });
+
+  return apiFetch<string[]>(`/products/admin/categories${query}`, {
+    method: "GET",
+  });
+},
 
   async findBrands(): Promise<string[]> {
     return apiFetch<string[]>("/products/brands", {
