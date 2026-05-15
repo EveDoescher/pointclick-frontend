@@ -19,10 +19,40 @@ const nunitoSans = Nunito_Sans({
   display: "swap",
 });
 
+const siteUrl = "https://pointclick-frontend.vercel.app";
+
+const ogImageUrl =
+  "https://ceuqctgpcqayeplkmnec.supabase.co/storage/v1/object/public/pointclick-media/metadata/pointclick-miniature.png";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "PointClick",
   description:
-    "PointClick é um e-commerce premium de eletrônicos, periféricos e acessórios.",
+    "Projeto acadêmico desenvolvido como parte do Projeto Integrador Multidisciplinar, simulando um e-commerce completo de eletrônicos com catálogo, carrinho, pedidos, pagamento simulado e painel administrativo.",
+  openGraph: {
+    title: "PointClick",
+    description:
+      "E-commerce acadêmico desenvolvido com Next.js, Java Spring Boot e PostgreSQL, integrando vitrine, carrinho, pedidos e painel administrativo.",
+    url: siteUrl,
+    siteName: "PointClick",
+    images: [
+      {
+        url: ogImageUrl,
+        width: 1200,
+        height: 627,
+        alt: "Tela inicial do PointClick, e-commerce acadêmico de eletrônicos",
+      },
+    ],
+    locale: "pt_BR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "PointClick",
+    description:
+      "Projeto acadêmico full stack de e-commerce de eletrônicos com Next.js, Spring Boot e PostgreSQL.",
+    images: [ogImageUrl],
+  },
 };
 
 export default function RootLayout({
